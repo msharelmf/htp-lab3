@@ -1,15 +1,23 @@
 name: My First Workflow
 on: 
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  first-job:
+  first_job:
     name: My First Job
     runs-on: ubuntu-latest
     steps:
-      - name: Greet the user
-        run: echo "Hello ${{ github.actor }}"
-        shell: bash
+     - name: Checkout Repository Code
+       uses: actions/checkout@v4
+     - name: Display Repository Tree
+       run: tree
+
+     - name: Greet the user
+       run: |
+        echo "Hello ${{github.actor}}"
+        echo "Current branch is '${{ github.ref }}'."
+        
+       shell: bash
