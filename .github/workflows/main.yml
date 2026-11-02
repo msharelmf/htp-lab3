@@ -4,13 +4,11 @@ on:
   #   branches:
   #     - main
   workflow_dispatch:
-  
 
 jobs:
   first-job:
     name: My First Job
     runs-on: ubuntu-latest
-
     steps:
       - name: Greet the user
         run: echo "Hello ${{ github.actor }}"
