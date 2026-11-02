@@ -32,7 +32,7 @@ jobs:
        run: |
         echo "Hello ${{github.actor}}"
         echo "Current branch is '${{ github.ref }}'."
-        echo "My API key will '${{ secrets.API_KEY }}'."
+        echo "My API key will '${{ secrets.APIKEY }}'."
         echo "My Persekitaran is '${{ vars.PERSEKITARAN }}'."
         
        shell: bash
