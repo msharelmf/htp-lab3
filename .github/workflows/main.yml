@@ -1,6 +1,5 @@
 name: My First Workflow
-
-on:
+on: 
   push:
     branches:
       - main
@@ -10,31 +9,33 @@ jobs:
   first_job:
     name: My First Job
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository Code
-        uses: actions/checkout@v4
+     - name: Checkout Repository Code
+       uses: actions/checkout@v4
+     - name: Display Repository Tree
+       run: tree
+    
+     - name: Change README Header using sed
+       run: |
+         echo "=== Modifying README Header ==="
+         # This swaps any line starting with '#' to '# My Checkout'
+         sed -i 's/^#.*/# My Checkout - Approved/' README.md
+       shell: bash
 
-      - name: Display Repository Tree
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y tree
-          tree
+     - name: Verify Modified README
+       run: |
+         echo "=== Checking current README contents ==="
+         cat README.md
+       shell: bash
 
-      - name: Change README Header using sed
-        run: |
-          echo "=== Modifying README Header ==="
-          sed -i '0,/^#.*/s/^#.*/# My Checkout - Approved/' README.md
-        shell: bash
-
-      - name: Verify Modified README
-        run: |
-          echo "=== Checking current README contents ==="
-          cat README.md
-        shell: bash
-
-      - name: Greet the user
-        run: |
-          echo "Hello ${{ github.actor }}"
-          echo "Current branch is '${{ github.ref }}'."
-        shell: bash
+     - name: Greet the user
+       run: |
+        echo "Hello ${{github.actor}}"
+        echo "Current branch is '${{ github.ref }}'."
+        echo "My API key will '${{ secrets.API_KEY }}'."
+        echo "My Persekitaran is '${{ vars.PERSEKITARAN }}'."
+        
+       shell: bash
+     
+    
+    
